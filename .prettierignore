@@ -1,0 +1,29 @@
+# Angular build output
+dist
+out-tsc
+
+# Node modules
+node_modules
+
+# Environment files (optional if you don’t want Prettier to touch them)
+src/environments/*
+
+# Coverage reports
+coverage
+
+# Compiled files
+*.min.js
+*.bundle.js
+
+# Lock & metadata files
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# IDE & system files
+.idea
+.vscode
+.DS_Store
+
+# Optional: Git-related
+.git
