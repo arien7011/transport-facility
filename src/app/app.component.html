@@ -1,1 +1,42 @@
+<div class="app-container">
+  <header class="header">
+    <div class="header-content">
+      <h1 class="logo">🚗 Transport Facility</h1>
+      <nav class="navigation">
+        <a
+          routerLink="/"
+          routerLinkActive="active"
+          [routerLinkActiveOptions]="{ exact: true }"
+          class="nav-link"
+        >
+          Home
+        </a>
+        <a routerLink="/add-ride" routerLinkActive="active" class="nav-link">
+          Add Ride
+        </a>
+        <a
+          routerLink="/available-rides"
+          routerLinkActive="active"
+          class="nav-link"
+        >
+          Available Rides
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="main-content">
+    <router-outlet></router-outlet>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-content">
+      <p>&copy; 2024 Transport Facility Management System</p>
+      <p class="footer-note">
+        Built with Angular 19 | Current Date: {{ currentDate }}
+      </p>
+    </div>
+  </footer>
+</div>
+
 <router-outlet></router-outlet>
