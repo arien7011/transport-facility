@@ -16,7 +16,7 @@
     "build:prod": "ng build --configuration production",
     "lighthouse": "lhci autorun",
     "build:gh": "ng build --output-path=dist --base-href=/transport-facility/",
-     "deploy:gh": "ng deploy --base-href=/transport-facility/ --dir=dist/transport-facility/browser"
+    "deploy:gh":"ngh --dir=dist/browser"
   },
   "private": true,
   "dependencies": {
