@@ -1,0 +1,1 @@
+import{La as t,Wa as i,Xa as n,gb as o}from"./chunk-CI4TCYLC.js";var s=class a{static \u0275fac=function(e){return new(e||a)};static \u0275cmp=t({type:a,selectors:[["app-available-rides"]],decls:2,vars:0,template:function(e,p){e&1&&(i(0,"p"),o(1,"available-rides works!"),n())},encapsulation:2})};export{s as AvailableRidesComponent};
