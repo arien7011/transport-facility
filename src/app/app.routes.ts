@@ -16,4 +16,5 @@ export const routes: Routes = [
         './features/rides/components/available-rides/available-rides.component'
       ).then((m) => m.AvailableRidesComponent),
   },
+  { path: '**', redirectTo: 'available-rides', pathMatch: 'full' },
 ];

@@ -3,7 +3,7 @@ services:
     name: transport-facility
     env: static
     buildCommand: npm ci && npm run build:prod
-    staticPublishPath: dist/transport-facility
+    staticPublishPath: dist/transport-facility/browser
     routes:
       - type: rewrite
         source: /*
