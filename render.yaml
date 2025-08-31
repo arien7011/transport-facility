@@ -1,0 +1,10 @@
+services:
+  - type: web
+    name: transport-facility
+    env: static
+    buildCommand: npm ci && npm run build:prod
+    staticPublishPath: dist/transport-facility
+    routes:
+      - type: rewrite
+        source: /*
+        destination: /index.html

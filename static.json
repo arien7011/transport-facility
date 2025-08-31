@@ -1,0 +1,6 @@
+{
+  "root": "dist/transport-facility",
+  "routes": {
+    "/**": "index.html"
+  }
+}
