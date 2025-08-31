@@ -5,5 +5,6 @@ import { Component } from '@angular/core';
   imports: [],
   templateUrl: './add-ride.component.html',
   styleUrl: './add-ride.component.css',
+  standalone: true,
 })
 export class AddRideComponent {}
