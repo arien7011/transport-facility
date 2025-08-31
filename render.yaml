@@ -2,7 +2,7 @@ services:
   - type: web
     name: transport-facility
     env: static
-    buildCommand: npm ci && npm run build:prod
+    buildCommand: npm install && ng build --configuration production
     staticPublishPath: dist/transport-facility/browser
     routes:
       - type: rewrite
