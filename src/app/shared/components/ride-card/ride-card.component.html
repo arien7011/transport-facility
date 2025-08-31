@@ -1,0 +1,64 @@
+@if (ride()) {
+  <div class="ride-card" [class.fully-booked]="ride()?.vacantSeats === 0">
+    <div class="ride-header">
+      <div class="vehicle-info">
+        <span
+          class="vehicle-type"
+          [class.bike]="ride()?.vehicleType === vehicleTypes.BIKE"
+        >
+          {{ ride()?.vehicleType }}
+        </span>
+        <span class="vehicle-number">{{ ride()?.vehicleNo }}</span>
+      </div>
+      <div class="seats-info">
+        <span class="seats-count" [class.no-seats]="ride()?.vacantSeats === 0">
+          {{ ride()?.vacantSeats }}/{{ ride()?.originalSeats }} seats
+        </span>
+      </div>
+    </div>
+
+    <div class="ride-details">
+      <div class="detail-row">
+        <span class="label">Time:</span>
+        <span class="value">{{ ride()?.time }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">From:</span>
+        <span class="value">{{ ride()?.pickupPoint }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">To:</span>
+        <span class="value">{{ ride()?.destination }}</span>
+      </div>
+      <div class="detail-row">
+        <span class="label">Driver:</span>
+        <span class="value">{{ ride()?.employeeId }}</span>
+      </div>
+    </div>
+
+    @if (showBookButton() && ride() && ride()!.vacantSeats > 0) {
+      <div class="ride-actions">
+        <button
+          class="book-btn"
+          (click)="onBookRide(ride()!.id)"
+          [disabled]="!canBook()"
+        >
+          {{ canBook() ? 'Book Ride' : 'Cannot Book' }}
+        </button>
+      </div>
+    }
+
+    @if (
+      ride()?.bookedEmployees && ride() && ride()!.bookedEmployees.length > 0
+    ) {
+      <div class="booked-employees">
+        <h4>Booked by:</h4>
+        <div class="employee-list">
+          @for (empId of ride()?.bookedEmployees; track empId) {
+            <span class="employee-tag">{{ empId }}</span>
+          }
+        </div>
+      </div>
+    }
+  </div>
+}

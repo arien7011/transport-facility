@@ -1,12 +1,7 @@
 import { Routes } from '@angular/router';
 
 export const routes: Routes = [
-  {
-    path: '',
-    component: class TestComponent {
-      template = '<div>Test Works!</div>';
-    },
-  },
+  { path: '', redirectTo: 'available-rides', pathMatch: 'full' },
   {
     path: 'add-ride',
     loadComponent: () =>

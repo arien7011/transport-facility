@@ -1,1 +1,111 @@
-<p>available-rides works!</p>
+<div class="available-rides-container">
+  <h2>Available Rides</h2>
+  <p class="subtitle">Find and book rides for today ({{ currentDate }})</p>
+
+  <div class="employee-section">
+    <div class="form-group">
+      <label for="currentEmployeeId">Your Employee ID *</label>
+      <input
+        type="text"
+        id="currentEmployeeId"
+        [formControl]="employeeIdControl"
+        placeholder="Enter your employee ID to book rides"
+        class="employee-input"
+      />
+      <div class="help-text">
+        Enter your employee ID to see available rides and book them
+      </div>
+    </div>
+  </div>
+
+  <div class="filters-section" [formGroup]="filtersForm">
+    <h3>Filter Rides</h3>
+
+    <div class="filters-row">
+      <div class="filter-group">
+        <label for="vehicleType">Vehicle Type</label>
+        <select id="vehicleType" formControlName="vehicleType">
+          <option value="">All Vehicles</option>
+          <option [value]="vehicleTypes.BIKE">{{ vehicleTypes.BIKE }}</option>
+          <option [value]="vehicleTypes.CAR">{{ vehicleTypes.CAR }}</option>
+        </select>
+      </div>
+
+      <div class="filter-group">
+        <label for="searchTime">Time (±60 min)</label>
+        <input
+          type="time"
+          id="searchTime"
+          formControlName="searchTime"
+          title="Find rides within 60 minutes of this time"
+        />
+      </div>
+
+      <div class="filter-actions">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="clearFilters()"
+        >
+          Clear Filters
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <div class="results-section">
+    <div class="results-header">
+      <h3>Available Rides ({{ filteredRides.length }})</h3>
+      <div class="refresh-info" *ngIf="lastUpdated">
+        Last updated: {{ lastUpdated | date: 'HH:mm:ss' }}
+      </div>
+    </div>
+
+    <div class="loading" *ngIf="isLoading">
+      <div class="loading-spinner"></div>
+      <p>Loading available rides...</p>
+    </div>
+
+    <div class="warning-message" *ngIf="!currentEmployeeId && !isLoading">
+      <p>
+        Please enter your Employee ID above to view and book available rides.
+      </p>
+    </div>
+
+    <div
+      class="no-rides"
+      *ngIf="currentEmployeeId && filteredRides.length === 0 && !isLoading"
+    >
+      <img
+        src="assets/icons/car.png"
+        width="50"
+        height="50"
+        alt="No Rides Available"
+      />
+      <h4>No rides available</h4>
+      <p>There are no rides matching your criteria at the moment.</p>
+      <p>Try adjusting your filters or check back later.</p>
+    </div>
+
+    <div
+      class="rides-list"
+      *ngIf="currentEmployeeId && filteredRides.length > 0 && !isLoading"
+    >
+      <app-ride-card
+        *ngFor="let ride of filteredRides; trackBy: trackByRideId"
+        [ride]="ride"
+        [showBookButton]="true"
+        [canBook]="canBookRide(ride)"
+        (bookRide)="onBookRide($event)"
+      >
+      </app-ride-card>
+    </div>
+  </div>
+
+  <div class="message success" *ngIf="successMessage">
+    {{ successMessage }}
+  </div>
+  <div class="message error" *ngIf="errorMessage">
+    {{ errorMessage }}
+  </div>
+</div>

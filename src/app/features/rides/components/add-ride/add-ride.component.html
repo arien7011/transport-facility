@@ -1,1 +1,158 @@
-<p>add-ride works!</p>
+<div class="add-ride-container">
+  <h2>Add New Ride</h2>
+  <p class="subtitle">Create a new ride for today ({{ currentDate }})</p>
+
+  <form [formGroup]="rideForm" (ngSubmit)="onSubmit()" class="ride-form">
+    <div class="form-group">
+      <label for="employeeId">Employee ID *</label>
+      <input
+        type="text"
+        id="employeeId"
+        formControlName="employeeId"
+        placeholder="Enter your employee ID"
+        [class.error]="isFieldInvalid('employeeId')"
+      />
+      @if (isFieldInvalid('employeeId')) {
+        <div class="error-message">
+          @if (rideForm.get('employeeId')?.errors?.['required']) {
+            <span>Employee ID is required</span>
+          }
+          @if (rideForm.get('employeeId')?.errors?.['employeeIdFormat']) {
+            <span>Employee ID must be 3-10 alphanumeric characters</span>
+          }
+        </div>
+      }
+    </div>
+    <div class="form-group">
+      <label for="vehicleType">Vehicle Type *</label>
+      <select
+        id="vehicleType"
+        formControlName="vehicleType"
+        [class.error]="isFieldInvalid('vehicleType')"
+      >
+        <option value="">Select vehicle type</option>
+        <option [value]="vehicleTypes.BIKE">{{ vehicleTypes.BIKE }}</option>
+        <option [value]="vehicleTypes.CAR">{{ vehicleTypes.CAR }}</option>
+      </select>
+      @if (isFieldInvalid('vehicleType')) {
+        <div class="error-message">Vehicle type is required</div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="vehicleNo">Vehicle Number *</label>
+      <input
+        type="text"
+        id="vehicleNo"
+        formControlName="vehicleNo"
+        placeholder="Enter vehicle number"
+        [class.error]="isFieldInvalid('vehicleNo')"
+      />
+      @if (isFieldInvalid('vehicleNo')) {
+        <div class="error-message">
+          @if (rideForm.get('vehicleNo')?.errors?.['required']) {
+            <span>Vehicle number is required</span>
+          }
+          @if (rideForm.get('vehicleNo')?.errors?.['vehicleNumberFormat']) {
+            <span>Invalid vehicle number format</span>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="vacantSeats">Available Seats *</label>
+      <input
+        type="number"
+        id="vacantSeats"
+        formControlName="vacantSeats"
+        min="1"
+        max="8"
+        placeholder="Number of available seats"
+        [class.error]="isFieldInvalid('vacantSeats')"
+      />
+      @if (isFieldInvalid('vacantSeats')) {
+        <div class="error-message">
+          @if (rideForm.get('vacantSeats')?.errors?.['required']) {
+            <span>Number of seats is required</span>
+          }
+          @if (rideForm.get('vacantSeats')?.errors?.['minValue']) {
+            <span>Minimum 1 seat required</span>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="time">Departure Time *</label>
+      <input
+        type="time"
+        id="time"
+        formControlName="time"
+        [class.error]="isFieldInvalid('time')"
+      />
+      @if (isFieldInvalid('time')) {
+        <div class="error-message">
+          @if (rideForm.get('time')?.errors?.['required']) {
+            <span>Departure time is required</span>
+          }
+          @if (rideForm.get('time')?.errors?.['timeFormat']) {
+            <span>Invalid time format</span>
+          }
+        </div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="pickupPoint">Pickup Point *</label>
+      <input
+        type="text"
+        id="pickupPoint"
+        formControlName="pickupPoint"
+        placeholder="Enter pickup location"
+        [class.error]="isFieldInvalid('pickupPoint')"
+      />
+      @if (isFieldInvalid('pickupPoint')) {
+        <div class="error-message">Pickup point is required</div>
+      }
+    </div>
+
+    <div class="form-group">
+      <label for="destination">Destination *</label>
+      <input
+        type="text"
+        id="destination"
+        formControlName="destination"
+        placeholder="Enter destination"
+        [class.error]="isFieldInvalid('destination')"
+      />
+      @if (isFieldInvalid('destination')) {
+        <div class="error-message">Destination is required</div>
+      }
+    </div>
+
+    <div class="form-actions">
+      <button type="button" class="btn btn-secondary" (click)="onCancel()">
+        Cancel
+      </button>
+      <button
+        type="submit"
+        class="btn btn-primary"
+        [disabled]="rideForm.invalid || isSubmitting"
+      >
+        {{ isSubmitting ? 'Adding Ride...' : 'Add Ride' }}
+      </button>
+    </div>
+
+    @if (successMessage) {
+      <div class="message success">
+        {{ successMessage }}
+      </div>
+    }
+    @if (errorMessage) {
+      <div class="message error">
+        {{ errorMessage }}
+      </div>
+    }
+  </form>
+</div>

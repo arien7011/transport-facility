@@ -14,7 +14,9 @@
     "lint:fix": "ng lint --fix",
     "analyze": "ng build --stats-json && npx webpack-bundle-analyzer dist/*/stats.json",
     "build:prod": "ng build --configuration production",
-    "lighthouse": "lhci autorun"
+    "lighthouse": "lhci autorun",
+    "build:gh": "ng build --output-path=dist --base-href=/transport-facility/",
+     "deploy:gh": "ng deploy --base-href=/transport-facility/ --dir=dist/transport-facility/browser"
   },
   "private": true,
   "dependencies": {
