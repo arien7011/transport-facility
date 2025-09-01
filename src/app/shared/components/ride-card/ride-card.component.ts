@@ -12,7 +12,7 @@ import { Router } from '@angular/router';
 export class RideCardComponent implements OnInit {
   ride = input<Ride>();
   vehicleTypes = VehicleType;
-  canBook = input<boolean>(true);
+  canBook = input<boolean>(false);
   showBookButton = input<boolean>(false);
   router = inject(Router);
   bookRide = output<string>();

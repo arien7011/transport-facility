@@ -15,7 +15,7 @@
           "options": {
             "outputPath": "dist/transport-facility/browser",
             "index": "src/index.html",
-           "baseHref": "/transport-facility/",
+           "baseHref": "/",
             "browser": "src/main.ts",
             "polyfills": [
               "zone.js"

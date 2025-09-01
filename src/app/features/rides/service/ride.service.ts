@@ -28,7 +28,7 @@ export class RideService {
 
     const currentDate = TimeUtils.getCurrentDate();
     const currentDayRides = rides.filter(
-      (ride: Ride) => ride.time === currentDate
+      (ride: Ride) => ride.date === currentDate
     );
 
     this.ridesSubject.next(currentDayRides);

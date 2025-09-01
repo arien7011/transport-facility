@@ -112,6 +112,7 @@ export class AvailableRidesComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.destroy$))
       .subscribe({
         next: (rides) => {
+          if (!rides) return;
           this.filteredRides = rides;
           this.lastUpdated = new Date();
           this.isLoading = false;
